@@ -1,0 +1,27 @@
+{% include 'base.html' %}
+<body>
+{% block MainContent %}
+<div class="centerDiv">
+<form action="login" method="POST">
+  <h1> Sign In </h1>
+  {% if incorrect_credentials %}
+  {% block content %}
+  <div class="alert">
+    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+    <strong>{{error_details}}</strong>
+  </div>
+  {% endblock content %}
+  {% endif %}
+  <div class="container">
+    <label for="uname"><b>Username</b></label>
+    <input type="text" placeholder="Enter Username" name="username" value="{{request.form.username}}" required>
+
+    <label for="psw"><b>Password</b></label>
+    <div class="text-container">
+	  <input type="password" name="password" placeholder="Enter Password" value="{{request.form.password}}" required/>
+	  <span id="btn" class="btn"><input type="checkbox" id="eye" onclick="if(password.type=='text')password.type='password'; else password.type='text';" /></span>
+    </div>
+    <button type="submit">Login</button>
+  </div>
+{% endblock MainContent %}
+</body>
